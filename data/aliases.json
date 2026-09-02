@@ -1,0 +1,225 @@
+{
+  "_meta": {
+    "purpose": "Per-fallacy name-leak detection list for backend post-check. Each fallacy lists all known ways it can be phrased (formal name, common synonyms, Latin variants, poster alt-names). Backend uses this to reject generated examples where the fallacy name leaks into the text.",
+    "source": "yourlogicalfallacyis.com poster + common logical terminology",
+    "usage": "For each fallacy ID, check if the generated example text contains any substring in the `aliases` array (case-insensitive). If match found, reject and regenerate."
+  },
+  "aliases": {
+    "strawman": [
+      "strawman",
+      "straw man",
+      "straw-man",
+      "misrepresentation",
+      "caricature",
+      "distortion"
+    ],
+    "false-cause": [
+      "false cause",
+      "false-cause",
+      "correlation",
+      "causation",
+      "post hoc",
+      "post-hoc",
+      "correlation is not causation"
+    ],
+    "appeal-to-emotion": [
+      "appeal to emotion",
+      "appeal-to-emotion",
+      "emotional appeal",
+      "emotional manipulation",
+      "appeal to fear",
+      "appeal to pity",
+      "appeal to sympathy",
+      "appeal to envy",
+      "appeal to hatred"
+    ],
+    "fallacy-fallacy": [
+      "fallacy fallacy",
+      "fallacy-fallacy",
+      "you used a fallacy",
+      "argument fallacy",
+      "meta-fallacy"
+    ],
+    "slippery-slope": [
+      "slippery slope",
+      "slippery-slope",
+      "slope",
+      "domino",
+      "extreme hypothetical"
+    ],
+    "ad-hominem": [
+      "ad hominem",
+      "ad-hominem",
+      "ad hom",
+      "personal attack",
+      "attack the person",
+      "character assassination",
+      "name-calling",
+      "tu quoque"
+    ],
+    "tu-quoque": [
+      "tu quoque",
+      "tu-quoque",
+      "tu quoque fallacy",
+      "you too",
+      "you did it too",
+      "you also",
+      "whataboutism",
+      "red herring"
+    ],
+    "personal-incredulity": [
+      "personal incredulity",
+      "personal-incredulity",
+      "incredulity",
+      "argument from disbelief",
+      "i don't believe it",
+      "i don't understand it"
+    ],
+    "special-pleading": [
+      "special pleading",
+      "special-pleading",
+      "moving goalposts",
+      "moving the goalposts",
+      "exception",
+      "special case",
+      "ad hoc"
+    ],
+    "loaded-question": [
+      "loaded question",
+      "loaded-question",
+      "loaded",
+      "complex question",
+      "presumptive question",
+      "question with built-in assumption"
+    ],
+    "burden-of-proof": [
+      "burden of proof",
+      "burden-of-proof",
+      "burden of proof fallacy",
+      "prove me wrong",
+      "you can't prove i'm wrong"
+    ],
+    "ambiguity": [
+      "ambiguity",
+      "ambiguous",
+      "equivocation",
+      "double meaning",
+      "word play",
+      "pun",
+      "misleading language"
+    ],
+    "gamblers-fallacy": [
+      "gamblers fallacy",
+      "gambler's fallacy",
+      "gamblers-fallacy",
+      "gambler's-fallacy",
+      "gambler fallacy",
+      "runs",
+      "hot hand fallacy",
+      "monte carlo fallacy"
+    ],
+    "bandwagon": [
+      "bandwagon",
+      "bandwagon fallacy",
+      "appeal to popularity",
+      "appeal to common belief",
+      "ad populum",
+      "argumentum ad populum",
+      "everyone believes it"
+    ],
+    "appeal-to-authority": [
+      "appeal to authority",
+      "appeal-to-authority",
+      "appeal to expert",
+      "argument from authority",
+      "ad hoc",
+      "argumentum ad auctoritatem",
+      "i know an expert who agrees"
+    ],
+    "composition-division": [
+      "composition",
+      "division",
+      "composition/division",
+      "composition division",
+      "composition-division",
+      "whole-part fallacy",
+      "part-whole fallacy",
+      "fallacy of composition",
+      "fallacy of division"
+    ],
+    "no-true-scotsman": [
+      "no true scotsman",
+      "no-true-scotsman",
+      "no true",
+      "true scotsman",
+      "appeal to purity",
+      "true by definition",
+      "definitional retreat"
+    ],
+    "genetic": [
+      "genetic fallacy",
+      "genetic",
+      "ad fontes",
+      "source criticism",
+      "origin bias",
+      "where it comes from"
+    ],
+    "black-or-white": [
+      "black or white",
+      "black-or-white",
+      "false dilemma",
+      "false dichotomy",
+      "false-dichotomy",
+      "false alternative",
+      "either or",
+      "either-or"
+    ],
+    "begging-the-question": [
+      "begging the question",
+      "begging-the-question",
+      "circular reasoning",
+      "circular argument",
+      "circular-argument",
+      "petitio principii",
+      "assume the conclusion",
+      "question-begging"
+    ],
+    "appeal-to-nature": [
+      "appeal to nature",
+      "appeal-to-nature",
+      "natural",
+      "natural law",
+      "is natural",
+      "naturalness",
+      "argument from nature"
+    ],
+    "anecdotal": [
+      "anecdotal",
+      "anecdote",
+      "anecdotal evidence",
+      "personal experience",
+      "isolated example",
+      "one-off case"
+    ],
+    "texas-sharpshooter": [
+      "texas sharpshooter",
+      "texas-sharpshooter",
+      "sharpshooter",
+      "cherry-picking",
+      "cherry picking",
+      "data dredging",
+      "p-hacking",
+      "pattern fitting"
+    ],
+    "middle-ground": [
+      "middle ground",
+      "middle-ground",
+      "middle",
+      "compromise",
+      "golden mean",
+      "appeal to moderation",
+      "argument to moderation",
+      "false compromise"
+    ]
+  }
+}

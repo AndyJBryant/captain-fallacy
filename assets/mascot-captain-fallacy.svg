@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <defs>
+    <style>
+      .cap-fill { fill: #E63946; }
+      .cap-dark { fill: #A4161A; }
+      .skin { fill: #FDB833; }
+      .shirt { fill: #1D3557; }
+      .shirt-dark { fill: #0D1B2A; }
+      .eyes { fill: #000; }
+      .white { fill: #FFF; }
+      .belt { fill: #333; }
+    </style>
+  </defs>
+
+  <!-- Shadow -->
+  <ellipse cx="100" cy="220" rx="60" ry="10" fill="#00000015"/>
+
+  <!-- Cape (back) -->
+  <path d="M 80 60 Q 50 80, 45 160 Q 40 180, 50 210 L 150 210 Q 160 180, 155 160 Q 150 80, 120 60 Z" 
+        fill="#1D3557" opacity="0.6"/>
+
+  <!-- Head -->
+  <circle cx="100" cy="70" r="32" class="skin"/>
+
+  <!-- Cap (back part) -->
+  <ellipse cx="100" cy="50" rx="38" ry="24" class="cap-fill"/>
+  <path d="M 65 50 Q 60 55, 62 70 L 138 70 Q 140 55, 135 50" class="cap-dark"/>
+
+  <!-- Ears -->
+  <ellipse cx="68" cy="75" rx="8" ry="12" class="skin"/>
+  <ellipse cx="132" cy="75" rx="8" ry="12" class="skin"/>
+
+  <!-- Face -->
+  <!-- Left eye white -->
+  <circle cx="85" cy="65" r="6" class="white"/>
+  <!-- Right eye white -->
+  <circle cx="115" cy="65" r="6" class="white"/>
+
+  <!-- Left pupil -->
+  <circle cx="87" cy="66" r="3" class="eyes"/>
+  <!-- Right pupil -->
+  <circle cx="117" cy="66" r="3" class="eyes"/>
+
+  <!-- Eyebrows (determined, heroic look) -->
+  <path d="M 78 55 Q 85 50, 92 55" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 108 55 Q 115 50, 122 55" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <path d="M 100 70 L 100 80" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Mouth (confident smile) -->
+  <path d="M 88 88 Q 100 95, 112 88" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Head highlight (shine) -->
+  <ellipse cx="80" cy="50" rx="12" ry="8" class="white" opacity="0.4"/>
+
+  <!-- Neck -->
+  <rect x="92" y="98" width="16" height="12" class="skin"/>
+
+  <!-- Body/Shirt -->
+  <path d="M 68 110 L 60 130 L 60 190 Q 100 200, 140 190 L 140 130 L 132 110 Z" class="shirt"/>
+
+  <!-- Shirt detail (lightning bolt or "F" emblem) -->
+  <g transform="translate(100, 140)">
+    <!-- Simple "F" for Fallacy -->
+    <rect x="-8" y="-15" width="3" height="30" fill="#E63946"/>
+    <rect x="-8" y="-15" width="12" height="3" fill="#E63946"/>
+    <rect x="-8" y="0" width="10" height="3" fill="#E63946"/>
+  </g>
+
+  <!-- Belt -->
+  <rect x="60" y="135" width="80" height="6" class="belt"/>
+  <circle cx="100" cy="138" r="5" fill="#FFD60A"/>
+
+  <!-- Arms -->
+  <!-- Left arm -->
+  <path d="M 68 115 Q 40 120, 35 160" stroke="#FDB833" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Right arm -->
+  <path d="M 132 115 Q 160 120, 165 160" stroke="#FDB833" stroke-width="14" fill="none" stroke-linecap="round"/>
+
+  <!-- Gloves -->
+  <circle cx="35" cy="165" r="8" fill="#333"/>
+  <circle cx="165" cy="165" r="8" fill="#333"/>
+
+  <!-- Legs -->
+  <!-- Left leg -->
+  <rect x="75" y="190" width="12" height="35" class="shirt-dark" rx="2"/>
+  <!-- Right leg -->
+  <rect x="113" y="190" width="12" height="35" class="shirt-dark" rx="2"/>
+
+  <!-- Boots -->
+  <ellipse cx="81" cy="228" rx="8" ry="6" fill="#333"/>
+  <ellipse cx="119" cy="228" rx="8" ry="6" fill="#333"/>
+
+  <!-- Cape (front) -->
+  <path d="M 80 60 Q 50 80, 45 160 Q 40 180, 50 210 L 150 210 Q 160 180, 155 160 Q 150 80, 120 60 Z" 
+        fill="#E63946" opacity="0.7"/>
+
+  <!-- Hero badge/star on chest -->
+  <g transform="translate(100, 125)">
+    <polygon points="0,-8 2.4,-2.4 8,-0.8 3.2,3.2 4.8,9 0,5.6 -4.8,9 -3.2,3.2 -8,-0.8 -2.4,-2.4" 
+             fill="#FFD60A" stroke="#333" stroke-width="0.5"/>
+  </g>
+</svg>

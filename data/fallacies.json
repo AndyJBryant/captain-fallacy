@@ -1,0 +1,260 @@
+{
+  "_meta": {
+    "source": "yourlogicalfallacyis.com — 'Thou shalt not commit logical fallacies' poster",
+    "source_pdf": "https://s3-us-west-2.amazonaws.com/oerfiles/Public+Speaking/FallaciesPoster24x36.pdf",
+    "license": "Creative Commons BY-NC 3.0 (attribution required, non-commercial). Attribute yourlogicalfallacyis.com in the app's About page.",
+    "count": 24,
+    "schema": {
+      "id": "stable slug identifier",
+      "name": "display name (UPPERCASE in UI)",
+      "image": "relative path to placeholder icon asset",
+      "description": "one-line summary (flashcard front / detail subheading)",
+      "detail": "explanatory paragraph (STUDY detail body)",
+      "example": "static worked example (STUDY body / flashcard example expand)",
+      "weighting": "selection weight for quiz/flashcards (all 1 for v1)",
+      "similarities": "future clustering: array of {id, weight}; empty for v1"
+    }
+  },
+  "fallacies": [
+    {
+      "id": "strawman",
+      "name": "Strawman",
+      "image": "assets/fallacies/strawman.png",
+      "description": "Misrepresenting someone's argument to make it easier to attack.",
+      "detail": "By exaggerating, misrepresenting, or just completely fabricating someone's argument, it's much easier to present your own position as being reasonable, but this kind of dishonesty serves to undermine rational debate.",
+      "example": "After Will said that we should put more money into health and education, Warren responded by saying that he was surprised that Will hates our country so much that he wants to leave it defenceless by cutting military spending.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "false-cause",
+      "name": "False Cause",
+      "image": "assets/fallacies/false-cause.png",
+      "description": "Presuming that a real or perceived relationship between things means that one is the cause of the other.",
+      "detail": "Many people confuse correlation (things happening together or in sequence) for causation (that one thing actually causes the other to happen). Sometimes correlation is coincidental, or it may be attributable to a common cause.",
+      "example": "Pointing to a fancy chart, Roger shows how temperatures have been rising over the past few centuries, whilst at the same time the numbers of pirates have been decreasing; thus pirates cool the world and global warming is a hoax.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "appeal-to-emotion",
+      "name": "Appeal to Emotion",
+      "image": "assets/fallacies/appeal-to-emotion.png",
+      "description": "Manipulating an emotional response in place of a valid or compelling argument.",
+      "detail": "Appeals to emotion include appeals to fear, envy, hatred, pity, guilt, and more. Though a valid, and reasoned, argument may sometimes have an emotional aspect, one must be careful that emotion doesn't obscure or replace reason.",
+      "example": "Luke didn't want to eat his sheep's brains with chopped liver and brussels sprouts, but his father told him to think about the poor, starving children in a third world country who weren't fortunate enough to have any food at all.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "fallacy-fallacy",
+      "name": "The Fallacy Fallacy",
+      "image": "assets/fallacies/fallacy-fallacy.png",
+      "description": "Presuming that because a claim has been poorly argued, or a fallacy has been made, that the claim itself must be wrong.",
+      "detail": "It is entirely possible to make a claim that is false yet argue with logical coherence for that claim, just as it is possible to make a claim that is true and justify it with various fallacies and poor arguments.",
+      "example": "Recognising that Amanda had committed a fallacy in arguing that we should eat healthy food because a nutritionist said it was popular, Alyse said we should therefore eat bacon double cheeseburgers every day.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "slippery-slope",
+      "name": "Slippery Slope",
+      "image": "assets/fallacies/slippery-slope.png",
+      "description": "Asserting that if we allow A to happen, then Z will consequently happen too, therefore A should not happen.",
+      "detail": "The problem with this reasoning is that it avoids engaging with the issue at hand, and instead shifts attention to baseless extreme hypotheticals. The merits of the original argument are then tainted by unsubstantiated conjecture.",
+      "example": "Colin Closet asserts that if we allow same-sex couples to marry, then the next thing we know we'll be allowing people to marry their parents, their cars and even monkeys.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "ad-hominem",
+      "name": "Ad Hominem",
+      "image": "assets/fallacies/ad-hominem.png",
+      "description": "Attacking your opponent's character or personal traits in an attempt to undermine their argument.",
+      "detail": "Ad hominem attacks can take the form of overtly attacking somebody, or casting doubt on their character. The result of an ad hom attack can be to undermine someone without actually engaging with the substance of their argument.",
+      "example": "After Sally presents an eloquent and compelling case for a more equitable taxation system, Sam asks the audience whether we should believe anything from a woman who isn't married, was once arrested, and smells a bit weird.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "tu-quoque",
+      "name": "Tu Quoque",
+      "image": "assets/fallacies/tu-quoque.png",
+      "description": "Avoiding having to engage with criticism by turning it back on the accuser — answering criticism with criticism.",
+      "detail": "Literally translating as 'you too' this fallacy is commonly employed as an effective red herring because it takes the heat off the accused having to defend themselves and shifts the focus back onto the accuser themselves.",
+      "example": "Nicole identified that Hannah had committed a logical fallacy, but instead of addressing the substance of her claim, Hannah accused Nicole of committing a fallacy earlier on in the conversation.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "personal-incredulity",
+      "name": "Personal Incredulity",
+      "image": "assets/fallacies/personal-incredulity.png",
+      "description": "Saying that because one finds something difficult to understand, it's therefore not true.",
+      "detail": "Complex subjects like biological evolution through natural selection require some amount of understanding before one is able to make an informed judgement about the subject at hand; this fallacy is usually used in place of that understanding.",
+      "example": "Kirk drew a picture of a fish and a human and with effusive disdain asked Richard if he really thought we were stupid enough to believe that a fish somehow turned into a human through just, like, random things happening over time.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "special-pleading",
+      "name": "Special Pleading",
+      "image": "assets/fallacies/special-pleading.png",
+      "description": "Moving the goalposts or making up exceptions when a claim is shown to be false.",
+      "detail": "Humans are funny creatures and have a foolish aversion to being wrong. Rather than appreciate the benefits of being able to change one's mind through better understanding, many will invent ways to cling to old beliefs.",
+      "example": "Edward Johns claimed to be psychic, but when his abilities were tested under proper scientific conditions, they magically disappeared. Edward explained this saying that one had to have faith in his abilities for them to work.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "loaded-question",
+      "name": "Loaded Question",
+      "image": "assets/fallacies/loaded-question.png",
+      "description": "Asking a question that has an assumption built into it so that it can't be answered without appearing guilty.",
+      "detail": "Loaded question fallacies are particularly effective at derailing rational debates because of their inflammatory nature - the recipient of the loaded question is compelled to defend themselves and may appear flustered or on the back foot.",
+      "example": "Grace and Helen were both romantically interested in Brad. One day, with Brad sitting within earshot, Grace asked in an inquisitive tone whether Helen was having any problems with a fungal infection.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "burden-of-proof",
+      "name": "Burden of Proof",
+      "image": "assets/fallacies/burden-of-proof.png",
+      "description": "Saying that the burden of proof lies not with the person making the claim, but with someone else to disprove.",
+      "detail": "The burden of proof lies with someone who is making a claim, and is not upon anyone else to disprove. The inability, or disinclination, to disprove a claim does not make it valid (however we must always go by the best available evidence).",
+      "example": "Bertrand declares that a teapot is, at this very moment, in orbit around the Sun between the Earth and Mars, and that because no one can prove him wrong his claim is therefore a valid one.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "ambiguity",
+      "name": "Ambiguity",
+      "image": "assets/fallacies/ambiguity.png",
+      "description": "Using double meanings or ambiguities of language to mislead or misrepresent the truth.",
+      "detail": "Politicians are often guilty of using ambiguity to mislead and will later point to how they were technically not lying if they come under scrutiny. It's a particularly tricky and premeditated fallacy to commit.",
+      "example": "When the judge asked the defendant why he hadn't paid his parking fines, he said that he shouldn't have to pay them because the sign said 'Fine for parking here' and so he naturally presumed that it would be fine to park there.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "gamblers-fallacy",
+      "name": "The Gambler's Fallacy",
+      "image": "assets/fallacies/gamblers-fallacy.png",
+      "description": "Believing that 'runs' occur to statistically independent phenomena such as roulette wheel spins.",
+      "detail": "This commonly believed fallacy can be said to have helped create a city in the desert of Nevada USA. Though the overall odds of a big run happening may be low, each spin of the wheel is itself entirely independent from the last.",
+      "example": "Red had come up six times in a row on the roulette wheel, so Greg knew that it was close to certain that black would be next up. Suffering an economic form of natural selection with this thinking, he soon lost all of his savings.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "bandwagon",
+      "name": "Bandwagon",
+      "image": "assets/fallacies/bandwagon.png",
+      "description": "Appealing to popularity or the fact that many people do something as an attempted form of validation.",
+      "detail": "The flaw in this argument is that the popularity of an idea has absolutely no bearing on its validity. If it did, then the Earth would have made itself flat for most of history to accommodate this popular belief.",
+      "example": "Shamus pointed a drunken finger at Sean and asked him to explain how so many people could believe in leprechauns if they're only a silly old superstition. Sean, however, had had a few too many Guinness himself and fell off his chair.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "appeal-to-authority",
+      "name": "Appeal to Authority",
+      "image": "assets/fallacies/appeal-to-authority.png",
+      "description": "Saying that because an authority thinks something, it must therefore be true.",
+      "detail": "It's important to note that this fallacy should not be used to dismiss the claims of experts, or scientific consensus. Appeals to authority are not valid arguments, but nor is it reasonable to disregard the claims of experts who have a demonstrated depth of knowledge unless one has a similar level of understanding.",
+      "example": "Not able to defend his position that evolution 'isn't true' Bob says that he knows a scientist who also questions evolution (and presumably isn't a primate).",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "composition-division",
+      "name": "Composition / Division",
+      "image": "assets/fallacies/composition-division.png",
+      "description": "Assuming that what's true about one part of something has to be applied to all, or other, parts of it.",
+      "detail": "Often when something is true for the part it does also apply to the whole, but because this isn't always the case it can't be presumed to be true. We must consider both the whole and its parts separately.",
+      "example": "Daniel was a precocious child and had a liking for logic. He reasoned that atoms are invisible, and that he was made of atoms and therefore invisible too. Unfortunately, despite his thinky skills, he lost the game of hide and go seek.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "no-true-scotsman",
+      "name": "No True Scotsman",
+      "image": "assets/fallacies/no-true-scotsman.png",
+      "description": "Making what could be called an appeal to purity as a way to dismiss relevant criticisms or flaws of an argument.",
+      "detail": "This fallacy is often employed as a measure of last resort when a point has been lost. Seeing that a criticism is valid, yet not wanting to admit it, new criteria are invoked to dissociate oneself or one's argument.",
+      "example": "Angus declares that Scotsmen do not put sugar on their porridge, to which Lachlan points out that he is a Scotsman and puts sugar on his porridge. Furious, like a true Scot, Angus yells that no true Scotsman sugars his porridge.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "genetic",
+      "name": "Genetic",
+      "image": "assets/fallacies/genetic.png",
+      "description": "Judging something good or bad on the basis of where it comes from, or from whom it came.",
+      "detail": "To appeal to prejudices surrounding something's origin is another red herring fallacy. This fallacy has the same function as an ad hominem, but applies instead to perceptions surrounding something's source or context.",
+      "example": "Accused on the 6 o'clock news of corruption and taking bribes, the senator said that we should all be very wary of the things we hear in the media, because we all know how unreliable the media can be.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "black-or-white",
+      "name": "Black or White",
+      "image": "assets/fallacies/black-or-white.png",
+      "description": "Where two alternative states are presented as the only possibilities, when in fact more possibilities exist.",
+      "detail": "Also known as the false dilemma, this insidious tactic has the appearance of forming a logical argument, but under closer scrutiny it becomes evident that there are more possibilities than the either/or choice that is presented.",
+      "example": "Whilst rallying support for his plan to fundamentally undermine citizens' rights, the Supreme Leader told the people they were either on his side, or on the side of the enemy.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "begging-the-question",
+      "name": "Begging the Question",
+      "image": "assets/fallacies/begging-the-question.png",
+      "description": "A circular argument in which the conclusion is included in the premise.",
+      "detail": "This logically incoherent argument often arises in situations where people have an assumption that is very ingrained, and therefore taken in their minds as a given. Circular reasoning is bad mostly because it's not very good.",
+      "example": "The word of Zorbo the Great is flawless and perfect. We know this because it says so in The Great and Infallible Book of Zorbo's Best and Most Truest Things that are Definitely True and Should Not Ever Be Questioned.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "appeal-to-nature",
+      "name": "Appeal to Nature",
+      "image": "assets/fallacies/appeal-to-nature.png",
+      "description": "Making the argument that because something is 'natural' it is therefore valid, justified, inevitable, good or ideal.",
+      "detail": "Many 'natural' things are also considered 'good', and this can bias our thinking; but naturalness itself doesn't make something good or bad. For instance murder is natural, but that doesn't mean it's good or justifiable.",
+      "example": "The medicine man rolled into town on his bandwagon offering various natural remedies, such as very special plain water. He said that it was only natural that people should be wary of 'artificial' medicines like antibiotics.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "anecdotal",
+      "name": "Anecdotal",
+      "image": "assets/fallacies/anecdotal.png",
+      "description": "Using personal experience or an isolated example instead of a valid argument, especially to dismiss statistics.",
+      "detail": "It's often much easier for people to believe someone's testimony as opposed to understanding variation across a continuum. Scientific and statistical measures are almost always more accurate than individual perceptions and experiences.",
+      "example": "Jason said that that was all cool and everything, but his grandfather smoked like 30 cigarettes a day and lived until 97 - so don't believe everything you read about meta analyses of methodologically sound studies showing proven causal relationships.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "texas-sharpshooter",
+      "name": "The Texas Sharpshooter",
+      "image": "assets/fallacies/texas-sharpshooter.png",
+      "description": "Cherry-picking data clusters to suit an argument, or finding a pattern to fit a presumption.",
+      "detail": "This 'false cause' fallacy is coined after a marksman shooting at barns and then painting a bullseye target around the spot where the most bullet holes appear. Clusters naturally appear by chance, and don't necessarily indicate causation.",
+      "example": "The makers of Sugarette Candy Drinks point to research showing that of the five countries where Sugarette drinks sell the most units, three of them are in the top ten healthiest countries on Earth, therefore Sugarette drinks are healthy.",
+      "weighting": 1,
+      "similarities": []
+    },
+    {
+      "id": "middle-ground",
+      "name": "Middle Ground",
+      "image": "assets/fallacies/middle-ground.png",
+      "description": "Saying that a compromise, or middle point, between two extremes must be the truth.",
+      "detail": "Much of the time the truth does indeed lie between two extreme points, but this can bias our thinking: sometimes a thing is simply untrue and a compromise of it is also untrue. Half way between truth and a lie, is still a lie.",
+      "example": "Holly said that vaccinations caused autism in children, but her scientifically well-read friend Caleb said that this claim had been debunked and proven false. Their friend Alice offered a compromise that vaccinations cause some autism, just not all autism.",
+      "weighting": 1,
+      "similarities": []
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # ── Frontend ──────────────────────────────────────────────
+      - name: Install frontend deps
+        run: npm ci
+
+      - name: TypeScript check (frontend)
+        run: npm run build
+        # vite build includes tsc -b; zero-error is the gate
+
+      # ── Backend ───────────────────────────────────────────────
+      - name: Install server deps
+        run: npm ci
+        working-directory: server
+
+      - name: TypeScript check (server)
+        run: npm run typecheck
+        working-directory: server
+
+      - name: Build server
+        run: npm run build
+        working-directory: server
+
+      # ── Slug health-check (no real key — confirms server starts) ──
+      - name: Start server (no API key) and hit /api/health
+        run: |
+          node server/dist/index.js &
+          SERVER_PID=$!
+          sleep 3
+          HEALTH=$(curl -sf http://localhost:3000/api/health)
+          echo "Health: $HEALTH"
+          echo "$HEALTH" | grep -q '"status":"ok"' || (echo "Health check FAILED" && kill $SERVER_PID && exit 1)
+          echo "$HEALTH" | grep -q '"keyConfigured":false' || (echo "Unexpected: key appears configured in CI" && kill $SERVER_PID && exit 1)
+          kill $SERVER_PID
+        env:
+          PORT: 3000
+          # OPENROUTER_API_KEY intentionally absent — confirms static-fallback-only path starts cleanly
