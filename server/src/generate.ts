@@ -15,6 +15,7 @@ import type { Fallacy, FallaciesData, AliasesData, GenerateRequest, GenerateResp
 import { systemPrompt, randomTopicPrompt, customTopicPrompt } from "./prompts.js";
 import { buildLeakChecker, validateShape } from "./postcheck.js";
 import { checkRateLimit } from "./ratelimit.js";
+import { getFromPool } from "./cache-pool.js";
 
 const VALID_TYPES: Set<RequestType> = new Set(["quiz_example", "study_random", "study_custom"]);
 const MAX_RETRIES = 2;
@@ -141,20 +142,25 @@ export function createGenerateRoute(
         }
 
         if (response.status === 404) {
-          // Wrong model slug — not retryable
-          console.error(`[generate] Model not found: ${model}`);
-          return c.json<ErrorResponse>(
-            { error: `Model "${model}" not found on OpenRouter.`, retryable: false },
-            502
-          );
+          // Wrong model slug — permanent, break to static fallback
+          lastError = `Model not found: ${model}`;
+          console.error(`[generate] ${lastError}`);
+          break;
+        }
+
+        if (response.status === 401 || response.status === 403) {
+          // Auth failure — permanent (bad/expired key), break immediately to static fallback
+          lastError = `Auth failure: HTTP ${response.status}`;
+          console.error(`[generate] ${lastError} — check OPENROUTER_API_KEY`);
+          break;
         }
 
         if (!response.ok) {
+          // 5xx / other upstream errors — retryable, then fall back to static
           lastError = `Upstream error: HTTP ${response.status}`;
           console.warn(`[generate] Attempt ${attempt + 1}: ${lastError}`);
-          // 5xx errors are retryable
           if (attempt < MAX_RETRIES) continue;
-          return c.json<ErrorResponse>({ error: "LLM service error. Please try again.", retryable: true }, 502);
+          break; // exhausted retries → static fallback
         }
 
         const data = await response.json() as {
@@ -200,10 +206,7 @@ export function createGenerateRoute(
           lastError = "Upstream timeout";
           console.warn(`[generate] Attempt ${attempt + 1}: timeout`);
           if (attempt < MAX_RETRIES) continue;
-          return c.json<ErrorResponse>(
-            { error: "LLM request timed out. Please try again.", retryable: true },
-            504
-          );
+          break; // exhausted retries → static fallback
         }
         lastError = String(err);
         console.error(`[generate] Attempt ${attempt + 1}: unexpected error:`, err);
@@ -213,7 +216,17 @@ export function createGenerateRoute(
     }
 
     // Static fallback — all retries exhausted
-    console.warn(`[generate] All retries exhausted (${lastError}), using static fallback for ${fallacyId}`);
+    console.warn(`[generate] All retries exhausted (${lastError}), using fallback for ${fallacyId}`);
+
+    // quiz_example: try cache pool first (richer variety than the single static example)
+    if (type === "quiz_example") {
+      const cached = getFromPool(fallacyId);
+      if (cached) {
+        return c.json<GenerateResponse>({ text: cached, fallacyId, source: "cached" });
+      }
+    }
+
+    // Final fallback: static example from dataset (always available)
     return c.json<GenerateResponse>({
       text: fallacy.example,
       fallacyId,

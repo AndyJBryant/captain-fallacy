@@ -1,0 +1,301 @@
+{
+  "_meta": {
+    "purpose": "G2 commit-accuracy evaluation: per-fallacy reference examples (good + bad) to measure LLM output fidelity. Backend's post-check validates generated examples against this gold set.",
+    "scoring": "For each generated example: (1) check for name-leak via aliases.json (automatic rejection if found), (2) does it genuinely exemplify the fallacy (human or heuristic eval), (3) does it avoid false positives (e.g., a true-cause example that happens to discuss causation shouldn't fail the false-cause test). G2 target: ≥90% commit-accuracy, zero name-leaks.",
+    "schema": {
+      "fallacyId": "stable slug from fallacies.json",
+      "good_examples": ["array of 2-3 known-good reference texts that clearly exemplify the fallacy, no name-leak"],
+      "bad_examples": ["array of 1-2 texts that look plausible but don't actually exemplify this fallacy — used to tune false-positive rejection thresholds"]
+    }
+  },
+  "gold_set": [
+    {
+      "fallacyId": "strawman",
+      "good_examples": [
+        "After Will argued we should invest more in healthcare, Warren said that clearly Will wants to bankrupt the country by throwing unlimited money at every problem.",
+        "When Sarah proposed a carbon tax on industry, Tom responded that she wanted to shut down all manufacturing and throw workers into poverty.",
+        "The senator claimed that funding education would solve poverty. His opponent countered that this idea is absurd because it assumes money alone fixes every social problem."
+      ],
+      "bad_examples": [
+        "Will argues healthcare spending should rise. Warren thinks that's wasteful. They disagree on the facts, not on what the other person said.",
+        "Sarah proposed a specific carbon tax rate. Tom said the rate she chose is too aggressive. This is a factual disagreement, not a misrepresentation of her argument."
+      ]
+    },
+    {
+      "fallacyId": "false-cause",
+      "good_examples": [
+        "Ice cream sales and drowning deaths both spike in summer. Therefore, ice cream must cause drowning.",
+        "Ever since my company adopted a new software tool, revenue has grown 15%. The tool caused the growth, not the market expansion that happened at the same time.",
+        "Roosters crow at dawn, and the sun rises. So roosters cause sunrise."
+      ],
+      "bad_examples": [
+        "Factory emissions increased while air quality declined. This is a genuine causal relationship supported by evidence.",
+        "Symptoms worsened after I stopped taking my medication. In this case, causation is clearly established by the mechanism of action."
+      ]
+    },
+    {
+      "fallacyId": "appeal-to-emotion",
+      "good_examples": [
+        "Think of starving children in poor countries! How can you argue for cutting international aid? (Using guilt/pity in place of evidence.)",
+        "Everyone you love will die horribly of disease if you don't vote for my candidate! (Fear-mongering without addressing the candidate's actual record.)",
+        "My opponent is a pedophile. Don't you care about protecting children? (Character attack with inflammatory language, no substantive argument.)"
+      ],
+      "bad_examples": [
+        "Workplace safety regulations save lives, and people deserve dignity at work. These are reasoned claims supported by moral and practical arguments.",
+        "Climate change threatens coastal cities and ecosystems. This statement conveys a genuine risk based on evidence, not just emotional manipulation."
+      ]
+    },
+    {
+      "fallacyId": "fallacy-fallacy",
+      "good_examples": [
+        "Jane argues that aliens visit Earth because UFOs are unexplained. That argument is fallacious. Therefore, aliens definitely don't visit Earth.",
+        "My opponent's evidence is anecdotal, which is fallacious reasoning. So his conclusion must be wrong — even though the conclusion could be true for other reasons.",
+        "The company's marketing uses an appeal to emotion. So their product must be useless. (The product could still be genuinely good despite bad marketing.)"
+      ],
+      "bad_examples": [
+        "Your argument contains a logical flaw, and your conclusion is also false. This can be coincidentally true without committing the fallacy.",
+        "The evidence you cited is weak, so I'm skeptical of your claim. Skepticism based on poor evidence is reasonable."
+      ]
+    },
+    {
+      "fallacyId": "slippery-slope",
+      "good_examples": [
+        "If we allow same-sex marriage, next we'll be forced to accept marrying pets and family members. (No causal mechanism; pure speculation.)",
+        "Legalizing marijuana will inevitably lead to heroin legalization and the collapse of society. (Extreme hypothetical with no intermediate steps.)",
+        "Allowing remote work one day a week means the office will vanish entirely and companies will fail."
+      ],
+      "bad_examples": [
+        "Smoking often leads to lung cancer. This is a real causal chain with evidence.",
+        "Poverty can lead to desperation and increased crime rates. This is a plausible causal sequence based on research."
+      ]
+    },
+    {
+      "fallacyId": "ad-hominem",
+      "good_examples": [
+        "You're stupid and ugly, so your opinion on economics is wrong. (Attacking the person, not the argument.)",
+        "She's a former addict, so we shouldn't trust her analysis of addiction policy. (Character assassination instead of engaging with the substance.)",
+        "He's a divorced man, so his views on marriage are worthless. (Personal trait used to dismiss the argument itself.)"
+      ],
+      "bad_examples": [
+        "You made a logical error in your reasoning, so your conclusion is questionable. (Critique of the argument, not the person.)",
+        "This economist's track record on forecasts is poor, so I'm doubtful of this prediction. (Relevant expertise assessment.)"
+      ]
+    },
+    {
+      "fallacyId": "tu-quoque",
+      "good_examples": [
+        "You criticized me for lying, but you also lied last week! So your criticism is invalid.",
+        "My opponent says I should raise taxes on the wealthy. I respond by pointing out that he also owns investments and pays low tax rates — so he's a hypocrite and his argument is wrong.",
+        "You say I cheat at games. But you cheated too! So you have no right to accuse me."
+      ],
+      "bad_examples": [
+        "You say honesty is important, but I've never seen you lie. Your argument stands on its own merits.",
+        "You criticize my research methods. Those methods are actually sound, and your critique misunderstands the study design. (Defending the argument itself.)"
+      ]
+    },
+    {
+      "fallacyId": "personal-incredulity",
+      "good_examples": [
+        "I don't understand how evolution could produce consciousness from simple cells, so evolution must be false.",
+        "Quantum mechanics seems weird and counterintuitive to me, so the theory must be wrong.",
+        "I can't imagine how artificial intelligence could write poetry, so large language models can't really be intelligent."
+      ],
+      "bad_examples": [
+        "The math behind quantum entanglement is complex. I'll study it more deeply to understand it.",
+        "This theory seems counterintuitive, so I want to review the evidence carefully. (Legitimate scientific inquiry.)"
+      ]
+    },
+    {
+      "fallacyId": "special-pleading",
+      "good_examples": [
+        "Astrology failed every scientific test, but that's only because scientists have a closed mind. They don't have faith!",
+        "My psychic powers never show up under controlled conditions, but that's because the test is too rigid and inhibits my abilities.",
+        "I said all swans are white. You found a black swan, but that one doesn't count — it's not a 'true' swan."
+      ],
+      "bad_examples": [
+        "This drug failed Phase 1 trials in healthy subjects but may work in disease populations. This is a reasonable distinction.",
+        "My hypothesis doesn't apply to this edge case for legitimate reasons documented in my paper. (Scientific caveat.)"
+      ]
+    },
+    {
+      "fallacyId": "loaded-question",
+      "good_examples": [
+        "When did you stop beating your wife? (Presupposes guilt of beating.)",
+        "Have you finally become honest? (Presupposes a history of dishonesty.)",
+        "Don't you think global warming is a Chinese hoax? (Presupposes it is a hoax.)"
+      ],
+      "bad_examples": [
+        "Did you attend the meeting yesterday? (Straightforward factual question.)",
+        "What is your position on climate policy? (Open-ended, no hidden assumption.)"
+      ]
+    },
+    {
+      "fallacyId": "burden-of-proof",
+      "good_examples": [
+        "I claim there's a teapot orbiting Mars. You can't prove me wrong, so my claim is true.",
+        "Unicorns exist. Prove they don't. If you can't, I win the argument.",
+        "I have telepathic powers. Since you can't disprove it, you must believe me."
+      ],
+      "bad_examples": [
+        "Scientists must prove their theories with experiments and data. (Correct burden of proof.)",
+        "Extraordinary claims require extraordinary evidence. (Appropriate calibration of proof burden.)"
+      ]
+    },
+    {
+      "fallacyId": "ambiguity",
+      "good_examples": [
+        "The sign said 'Fine for parking here,' so I naturally assumed it was fine to park.",
+        "The law says no vehicle may enter the park. I drove my toy car through it and claimed the law doesn't apply because it's not a real vehicle.",
+        "Bank capital is invested in stocks. Capital punishment should be invested in stocks too! (Exploiting 'capital' having two meanings.)"
+      ],
+      "bad_examples": [
+        "The term 'depression' in psychology means something different from the economic definition. This distinction is important for clarity.",
+        "The word 'lead' has multiple meanings, so I need to specify whether I'm discussing the metal or the verb. (Legitimate disambiguation.)"
+      ]
+    },
+    {
+      "fallacyId": "gamblers-fallacy",
+      "good_examples": [
+        "I've lost five hands of poker in a row, so I'm due to win the next hand.",
+        "Red came up on the roulette wheel four times in a row. Black is now very likely on the next spin.",
+        "My lottery ticket numbers haven't won in 10 years, so they're more likely to win this time."
+      ],
+      "bad_examples": [
+        "This weighted die favors odd numbers, so over 1000 rolls, odd will appear more. (Accurate statistical reasoning.)",
+        "If the lottery is fair, each number has equal probability every draw. (Correct understanding of probability.)"
+      ]
+    },
+    {
+      "fallacyId": "bandwagon",
+      "good_examples": [
+        "Everyone believes in astrology, so it must be true.",
+        "Most people think this movie is great, so you should too.",
+        "Millions follow this influencer, so their medical advice must be sound."
+      ],
+      "bad_examples": [
+        "Many scientists agree on the theory of gravity. This agreement is based on evidence and experiments.",
+        "A majority of voters support this policy. This reflects their democratic choice, not necessarily evidence of correctness."
+      ]
+    },
+    {
+      "fallacyId": "appeal-to-authority",
+      "good_examples": [
+        "A celebrity said this diet works, so it must be safe and effective, even though the celebrity has no medical training.",
+        "This famous actor thinks vaccines are harmful. Therefore, vaccines are harmful. (No medical expertise.)",
+        "A TV personality claims quantum physics proves telepathy. Since he's on TV, it must be true."
+      ],
+      "bad_examples": [
+        "A peer-reviewed study by leading physicists in the field concludes X. This is credible due to their expertise and the process.",
+        "A cardiac surgeon advises me on heart health. Their professional training makes this relevant."
+      ]
+    },
+    {
+      "fallacyId": "composition-division",
+      "good_examples": [
+        "Atoms are invisible. Humans are made of atoms. Therefore, humans must be invisible.",
+        "Every part of a piano is lightweight. So a piano is lightweight. (False: the whole piano is heavy.)",
+        "The team is undefeated. So each player is undefeated in every sport they play. (False: composition doesn't always work.)"
+      ],
+      "bad_examples": [
+        "The team is composed of Olympic athletes. The team likely has strong athletic performance. (Reasonable inference.)",
+        "Water molecules consist of hydrogen and oxygen. Water can be broken down into hydrogen and oxygen. (Factually accurate.)"
+      ]
+    },
+    {
+      "fallacyId": "no-true-scotsman",
+      "good_examples": [
+        "No Scotsman puts sugar on his porridge. My neighbor is Scottish and puts sugar on porridge. Then he's not a *true* Scotsman!",
+        "A true capitalist would never advocate for regulation. If someone advocates for regulation, they're not a true capitalist. (Definitional retreat.)",
+        "A real conservative always opposes government spending. My conservative friend supports infrastructure spending. So he's not a real conservative."
+      ],
+      "bad_examples": [
+        "By definition, a triangle has three sides. A four-sided figure is not a triangle. (Proper definition.)",
+        "A democracy requires free elections. A country with rigged elections is not a true democracy. (Meaningful distinction based on criteria.)"
+      ]
+    },
+    {
+      "fallacyId": "genetic",
+      "good_examples": [
+        "This idea comes from a disreputable source, so it must be wrong. (Ignoring the merit of the idea itself.)",
+        "You grew up in a poor neighborhood, so your opinions on economics are invalid.",
+        "This research was funded by Big Oil, so the conclusions are lies. (Ignoring the actual methodology and results.)"
+      ],
+      "bad_examples": [
+        "This research was funded by Big Oil. Let me examine the methodology carefully to see if bias occurred. (Warranted skepticism.)",
+        "His religious background influences his worldview. Understanding his background helps me contextualize his arguments. (Valid context.)"
+      ]
+    },
+    {
+      "fallacyId": "black-or-white",
+      "good_examples": [
+        "You're either with us or against us. (False dichotomy; there are other positions.)",
+        "Either vaccines are 100% safe or they're completely dangerous. (False: nuanced risk-benefit analysis needed.)",
+        "You either love your country or you criticize its government. (False: patriotism can include critique.)"
+      ],
+      "bad_examples": [
+        "This light switch is either on or off. (Legitimate dichotomy.)",
+        "A statement is either true or false. (Appropriate binary for truth values.)"
+      ]
+    },
+    {
+      "fallacyId": "begging-the-question",
+      "good_examples": [
+        "God must exist because the Bible says so, and the Bible is the word of God.",
+        "This medicine works because it's effective. (Conclusion restates the premise.)",
+        "Violence in video games is harmful because it's bad for you."
+      ],
+      "bad_examples": [
+        "Smoking causes lung cancer. Studies show a mechanism and correlation. (Supported by evidence.)",
+        "Gravity pulls objects down. This is explained by mass and spacetime curvature. (Supported by physics.)"
+      ]
+    },
+    {
+      "fallacyId": "appeal-to-nature",
+      "good_examples": [
+        "This medicine is natural, so it's safe and effective. (Hemlock is natural but deadly.)",
+        "Homosexuality is unnatural, so it's wrong. (Appeals to nature as moral standard without evidence.)",
+        "Humans are naturally competitive, so cooperation is futile. (Nature ≠ moral guide.)"
+      ],
+      "bad_examples": [
+        "This herb has been used in traditional medicine for centuries and now research confirms benefits. (Nature + evidence.)",
+        "Humans naturally feel empathy, which is why moral systems often emphasize compassion. (Describing natural tendency, not justifying morality.)"
+      ]
+    },
+    {
+      "fallacyId": "anecdotal",
+      "good_examples": [
+        "My grandfather smoked 30 cigarettes a day and lived to 97, so smoking isn't dangerous.",
+        "I tried this diet and lost 10 pounds, so it works for everyone.",
+        "My friend took this supplement and got better, so it must cure the disease. (Ignoring statistics on recovery rates.)"
+      ],
+      "bad_examples": [
+        "Controlled studies show this medication is effective in 80% of cases. Here's my personal experience consistent with that data.",
+        "Surveys of 10,000 people indicate this trend. My own observation aligns with the broader pattern. (Anecdote + data.)"
+      ]
+    },
+    {
+      "fallacyId": "texas-sharpshooter",
+      "good_examples": [
+        "I found three countries where Sugarette drinks are popular AND healthy. So Sugarette causes health! (Ignoring the hundreds of other countries.)",
+        "These five days had unusually high stock gains. I'll build a trading strategy around these specific days. (Pattern from noise.)",
+        "I noticed that my headaches started after I switched detergent. So the detergent causes headaches. (Correlation from selective observation.)"
+      ],
+      "bad_examples": [
+        "Controlled studies tracked 100 people over 2 years and found a consistent pattern of headaches after detergent exposure. (Systematic research.)",
+        "Multiple independent studies replicate the relationship between X and Y, suggesting a real phenomenon. (Convergent evidence.)"
+      ]
+    },
+    {
+      "fallacyId": "middle-ground",
+      "good_examples": [
+        "Vaccines cause autism vs. vaccines are safe. The truth is vaccines cause some autism but not all. (False: the claim is entirely disproven.)",
+        "The Earth is flat vs. the Earth is round. Compromise: the Earth is slightly bumpy. (Both poles are wrong, no middle ground.)",
+        "We should have 0% or 100% government. Compromise: 50% government. (Arbitrary compromise on an unrelated scale.)"
+      ],
+      "bad_examples": [
+        "Free market vs. regulated market. A mixed economy may balance both benefits.",
+        "Strict discipline vs. permissive parenting. Research suggests moderate, consistent approach may be effective. (Genuine middle position.)"
+      ]
+    }
+  ]
+}

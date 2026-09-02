@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
 import type { FallaciesData, AliasesData } from "./types.js";
 import { createGenerateRoute } from "./generate.js";
+import { initCachePool, isPoolReady, getPoolStatus } from "./cache-pool.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -41,6 +42,9 @@ if (missingAliases.length > 0) {
 
 const app = new Hono();
 
+// Start cache pool warmup (non-blocking — runs in background)
+initCachePool(fallaciesData, aliasesData);
+
 // Health endpoint — used by @captain-release slug check and Railway health probe
 app.get("/api/health", (c) => {
   const model = process.env.LLM_MODEL ?? "deepseek/deepseek-v4-flash";
@@ -50,6 +54,8 @@ app.get("/api/health", (c) => {
     model,
     keyConfigured: hasKey,
     fallacyCount: fallaciesData.fallacies.length,
+    cachePoolReady: isPoolReady(),
+    cachePoolStatus: getPoolStatus(),
   });
 });
 
