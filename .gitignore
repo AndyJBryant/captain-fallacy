@@ -7,6 +7,9 @@ dist/
 dist-ssr/
 server/dist/
 
+# Vite cache (moved out of node_modules via cacheDir in vite.config.ts)
+.vite-cache/
+
 # Local env files — NEVER commit secrets
 .env
 .env.*

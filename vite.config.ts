@@ -7,6 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  cacheDir: '.vite-cache',
   server: {
     proxy: {
       '/api': 'http://localhost:3001',
