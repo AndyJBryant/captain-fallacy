@@ -2,7 +2,11 @@
  * Name-leak post-check.
  * After generation, rejects output containing any alias for the target fallacy.
  * Uses data/aliases.json — word-boundary aware to reduce false positives on generic terms.
- * (See rick-bot's G0 note: generic terms like "correlation" get boundary-checked.)
+ *
+ * Defect fixes applied (rick-bot G2 report):
+ * - "natural" removed from appeal-to-nature alias list (too common; done in aliases.json)
+ * - "middle" removed from middle-ground alias list (too aggressive; done in aliases.json)
+ * - "logical fallacy" meta-tell exempted for fallacy-fallacy (its examples must discuss fallacies)
  */
 
 import type { AliasesData } from "./types.js";
@@ -47,11 +51,22 @@ export function buildLeakChecker(aliasesData: AliasesData) {
 }
 
 /**
+ * Per-fallacy meta-tell exemptions.
+ * Some fallacies legitimately require words that are otherwise meta-tells.
+ * e.g. fallacy-fallacy examples MUST discuss other arguments/fallacies by nature.
+ */
+const META_TELL_EXEMPTIONS: Record<string, RegExp[]> = {
+  "fallacy-fallacy": [
+    /logical fallacy/i, // fallacy-fallacy examples inherently discuss fallacies
+  ],
+};
+
+/**
  * Sanity-check the shape of generated text before accepting it:
  * - non-empty string
  * - within length range (50–800 chars)
  * - single-paragraph (no markdown headers, no lists)
- * - no meta-tells
+ * - no meta-tells (with per-fallacy exemptions)
  */
 const META_TELLS = [
   /this (argument|example|statement) (commits|contains|is)/i,
@@ -60,14 +75,22 @@ const META_TELLS = [
   /the fallacy (here|in this)/i,
 ];
 
-export function validateShape(text: string): { ok: boolean; reason?: string } {
+export function validateShape(
+  text: string,
+  fallacyId?: string
+): { ok: boolean; reason?: string } {
   if (!text || typeof text !== "string") return { ok: false, reason: "empty" };
   const t = text.trim();
   if (t.length < 50) return { ok: false, reason: "too short" };
   if (t.length > 800) return { ok: false, reason: "too long" };
   if (/^#{1,6}\s/m.test(t)) return { ok: false, reason: "contains markdown header" };
   if (/^[\-\*\d]+[.)]\s/m.test(t)) return { ok: false, reason: "contains list" };
+
+  const exemptions = fallacyId ? (META_TELL_EXEMPTIONS[fallacyId] ?? []) : [];
+
   for (const re of META_TELLS) {
+    // Skip this meta-tell if it's exempted for this fallacy
+    if (exemptions.some((ex) => ex.toString() === re.toString())) continue;
     if (re.test(t)) return { ok: false, reason: "contains meta-tell" };
   }
   return { ok: true };

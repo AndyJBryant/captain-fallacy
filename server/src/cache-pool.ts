@@ -153,7 +153,7 @@ async function generateOne(fallacy: Fallacy, apiKey: string): Promise<string | n
       }
 
       const text = rawContent.trim();
-      if (!validateShape(text).ok) {
+      if (!validateShape(text, fallacy.id).ok) {
         if (attempt < MAX_RETRIES) continue;
         return null;
       }

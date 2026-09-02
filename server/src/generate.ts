@@ -178,7 +178,7 @@ export function createGenerateRoute(
         const text = rawContent.trim();
 
         // Shape validation
-        const shapeCheck = validateShape(text);
+        const shapeCheck = validateShape(text, fallacyId);
         if (!shapeCheck.ok) {
           lastError = `Shape check failed: ${shapeCheck.reason}`;
           console.warn(`[generate] Attempt ${attempt + 1}: ${lastError}`);
