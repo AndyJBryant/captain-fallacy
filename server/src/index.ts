@@ -10,7 +10,7 @@ import { serveStatic } from "@hono/node-server/serve-static";
 import { Hono } from "hono";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, relative } from "node:path";
 import type { FallaciesData, AliasesData } from "./types.js";
 import { createGenerateRoute } from "./generate.js";
 
@@ -56,8 +56,12 @@ app.get("/api/health", (c) => {
 // Generate proxy
 app.route("/api/generate", createGenerateRoute(fallaciesData, aliasesData));
 
-// Serve static frontend build (Vite output in ../dist, relative to server root)
-app.use("/*", serveStatic({ root: join(__dirname, "../../dist") }));
+// Serve static frontend build (Vite output in dist/ relative to cwd = repo root)
+// serveStatic root must be relative to process.cwd(), not an absolute path.
+// Railway runs `node server/dist/index.js` from /app (repo root), so 'dist' resolves correctly.
+const distAbs = join(__dirname, "../../dist");
+const distRel = relative(process.cwd(), distAbs) || "dist";
+app.use("/*", serveStatic({ root: distRel }));
 
 // SPA fallback: any non-asset route not found → serve index.html
 app.notFound((c) => {
@@ -65,7 +69,7 @@ app.notFound((c) => {
   // Only fall back for non-asset paths (no file extension)
   if (!path.includes(".")) {
     try {
-      const html = readFileSync(join(__dirname, "../../dist/index.html"), "utf-8");
+      const html = readFileSync(distAbs + "/index.html", "utf-8");
       return c.html(html);
     } catch {
       // dist not built yet (dev mode without frontend build)
